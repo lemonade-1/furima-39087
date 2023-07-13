@@ -14,8 +14,8 @@
 | birthday           | date   | null: false               |
 
 ### Association
-- has_many : items
-- has_many : purchases
+- has_many :items
+- has_many :purchases
 
 ## items テーブル
 | Column          | Type        | Options                        |
@@ -31,8 +31,8 @@
 | price            | integer    | null: false                    |
 
 ### Association
-- belongs_to : user
-- has_one : purchase
+- belongs_to :user
+- has_one :purchase
 
 ## purchases テーブル
 | Column | Type        | Options                        |
@@ -41,19 +41,20 @@
 | item   | references  | null: false, foreign_key: true |
 
 ### Association
-- belongs_to : user
-- belongs_to : item
-- has_one : shipping_address
+- belongs_to :user
+- belongs_to :item
+- has_one :shipping_address
 
 ## shipping_addresses テーブル
 | Column        | Type       | Options                        |
+|---------------|------------|--------------------------------|
 | purchase      | references | null: false, foreign_key: true |
 | postcode      | string     | null: false                    |
 | prefecture_id | integer    | null: false                    |
 | city          | string     | null: false                    |
 | block         | string     | null: false                    |
-| building      | string     | null: false                    |
+| building      | string     |                                |
 | phone_number  | string     | null: false                    |
 
 ### Association
-- belongs_to : purchase
+- belongs_to :purchase
