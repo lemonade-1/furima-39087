@@ -8,9 +8,9 @@ class User < ApplicationRecord
   validates :password, format: { with: VALID_PASSWORD_REGEX, message: 'Include both letters and numbers', allow_blank: true }
 
   validates :nickname,        presence: true
-  validates :last_name,       format: { with: /\A[ぁ-んァ-ン一-龥]+\z/ }
-  validates :first_name,      format: { with: /\A[ぁ-んァ-ン一-龥]+\z/ }
-  validates :last_name_kana,  format: { with: /\A[ァ-ヶー－]+\z/ }
-  validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/ }
+  validates :last_name,       format: { with: /\A[ぁ-んァ-ヶ一-龥々]+\z/, presence: true }
+  validates :first_name,      format: { with: /\A[ぁ-んァ-ヶ一-龥々]+\z/, presence: true }
+  validates :last_name_kana,  format: { with: /\A[ァ-ヶー－]+\z/, presence: true }
+  validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, presence: true }
   validates :birthday,        presence: true
 end
