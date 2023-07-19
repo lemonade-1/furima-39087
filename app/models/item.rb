@@ -1,11 +1,14 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-
+  #アソシエーション（ActiveHash）
   belongs_to :category
   belongs_to :condition
   belongs_to :shipping_cost
   belongs_to :prefecture
   belongs_to :shipping_date
+  
+  #アソシエーション（Active Storage）
+  has_one_attached :image
 
   #空の投稿を保存できないようにする
   with_options presence: true do
