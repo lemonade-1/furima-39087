@@ -6,6 +6,9 @@ class Item < ApplicationRecord
   belongs_to :shipping_cost
   belongs_to :prefecture
   belongs_to :shipping_date
+
+  #アソシエーション（Userモデル）
+  belongs_to :user
   
   #アソシエーション（Active Storage）
   has_one_attached :image
