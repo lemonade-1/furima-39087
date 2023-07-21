@@ -3,11 +3,11 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
-  #アソシエーション
+
+  # アソシエーション
   has_many :items
 
-  #半角英数字以外をパスワードに入力するとエラーを返す。重複回避
+  # 半角英数字以外をパスワードに入力するとエラーを返す。重複回避
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
   validates :password, format: { with: VALID_PASSWORD_REGEX, message: 'Include both letters and numbers', allow_blank: true }
 

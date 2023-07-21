@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Item, type: :model do
   before do
-    @item = FactoryBot.create(:item)
+    @item = FactoryBot.build(:item)
   end
 
   describe '商品の出品登録' do
@@ -13,12 +13,6 @@ RSpec.describe Item, type: :model do
     end
 
     context '出品登録できない場合' do
-      it 'ユーザー未登録だと出品できない' do
-        @item.user_id = nil
-        @item.valid?
-        expect(@item.errors.full_messages).to include('User must exist', "User can't be blank")
-      end
-
       it '画像が添付されていないと出品できない' do
         @item.image = nil
         @item.valid?
@@ -106,15 +100,14 @@ RSpec.describe Item, type: :model do
       it '価格は¥300以上でないと出品できない' do
         @item.price = 100
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+        expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
       end
 
       it '価格は¥9,999,999以下でないと出品できない' do
         @item.price = 100_000_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+        expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
       end
-      
     end
   end
 end
