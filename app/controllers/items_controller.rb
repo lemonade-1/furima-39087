@@ -2,12 +2,9 @@ class ItemsController < ApplicationController
   # 未ログイン時、ログイン画面へ遷移
   before_action :authenticate_user!, except: [:index]
 
-# 商品一覧表示機能で実装予定のためコメントアウト
-=begin
   def index
     @items = Item.includes(:user).order('created_at DESC')
   end
-=end
 
   def new
     @item = Item.new
