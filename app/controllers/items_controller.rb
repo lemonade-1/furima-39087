@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   # 未ログイン時、ログイン画面へ遷移
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :move_to_index, only: [:edit]
 
   def index
@@ -36,6 +36,15 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    if user_signed_in? && current_user.id == @item.user.id
+      @item.destroy
+      redirect_to root_path
+    else
+      redirect_to root_path
+    end
+  end
+
   private
 
   def item_params
@@ -46,7 +55,7 @@ class ItemsController < ApplicationController
   def move_to_index
     return if user_signed_in? && current_user.id == @item.user.id && @item.present? == true
 
-    redirect_to action: :index
+    redirect_to root_path
   end
 
   def set_item
