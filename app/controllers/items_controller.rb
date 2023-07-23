@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   # 未ログイン時、ログイン画面へ遷移
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_item, only: [:show, :edit]
+  before_action :set_item, only: [:show, :edit, :update]
   before_action :move_to_index, only: [:edit]
 
   def index
@@ -28,7 +28,6 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @item = Item.find(params[:id])
     @item.update(item_params)
     if @item.save
       redirect_to item_path(@item)
