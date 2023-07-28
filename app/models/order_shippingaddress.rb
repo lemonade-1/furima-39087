@@ -1,4 +1,4 @@
-class OrderShippingAddress
+class OrderShippingaddress
   include ActiveModel::Model
   # ordersテーブルとshipping_addressesテーブルに保存したいカラム名
   attr_accessor :user_id, :item_id, :postcode, :prefecture_id, :city, :block, :building, :phone_number
