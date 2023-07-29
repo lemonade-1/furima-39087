@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item_2, only: [:index, :create] # ルーティングのネストによりpramsの中のidが変化したため
+  before_action :move_to_index_2, only: [:index, :create]
 
   def index
     @order_shippingaddress = OrderShippingaddress.new
@@ -24,6 +25,12 @@ class OrdersController < ApplicationController
 
   def set_item_2
     @item = Item.find(params[:item_id]) 
+  end
+
+  def move_to_index_2
+    return if current_user.id != @item.user.id && @item.order == nil
+
+    redirect_to root_path
   end
 
 end
