@@ -8,7 +8,7 @@ class OrderShippingaddress
     validates :user_id
     validates :item_id
     # shipping_addressモデルのバリデーション
-    validates :postcode, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)", allow_blank: true}
+    validates :postcode, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)', allow_blank: true }
     validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :city
     validates :block
@@ -22,6 +22,7 @@ class OrderShippingaddress
     order = Order.create(user_id: user_id, item_id: item_id)
     # 住所を保存
     # order_idには、変数orderのidと指定する
-    ShippingAddress.create(postcode: postcode, prefecture_id: prefecture_id, city: city, block: block, building: building, phone_number: phone_number, order_id: order.id)
+    ShippingAddress.create(postcode: postcode, prefecture_id: prefecture_id, city: city, block: block, building: building,
+                           phone_number: phone_number, order_id: order.id)
   end
 end

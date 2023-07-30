@@ -10,7 +10,7 @@ RSpec.describe OrderShippingaddress, type: :model do
       it 'すべての値が正しく入力されていれば保存できること' do
         expect(@order_shippingaddress).to be_valid
       end
-    
+
       it '建物名が空でも保存できる' do
         @order_shippingaddress.building = nil
         expect(@order_shippingaddress).to be_valid
@@ -37,9 +37,9 @@ RSpec.describe OrderShippingaddress, type: :model do
       end
 
       it 'postcodeは「3桁ハイフン4桁」でないと保存できない' do
-        @order_shippingaddress.postcode = 1234567
+        @order_shippingaddress.postcode = 1_234_567
         @order_shippingaddress.valid?
-        expect(@order_shippingaddress.errors.full_messages).to include("Postcode is invalid. Include hyphen(-)")
+        expect(@order_shippingaddress.errors.full_messages).to include('Postcode is invalid. Include hyphen(-)')
       end
 
       it '都道府県が空だと保存できない' do
@@ -73,21 +73,21 @@ RSpec.describe OrderShippingaddress, type: :model do
       end
 
       it '電話番号が9桁以下だと保存できない' do
-        @order_shippingaddress.phone_number = 123456789
+        @order_shippingaddress.phone_number = 123_456_789
         @order_shippingaddress.valid?
-        expect(@order_shippingaddress.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_shippingaddress.errors.full_messages).to include('Phone number is invalid')
       end
 
       it '電話番号が12桁以上だと保存できない' do
-        @order_shippingaddress.phone_number = 123456789012
+        @order_shippingaddress.phone_number = 123_456_789_012
         @order_shippingaddress.valid?
-        expect(@order_shippingaddress.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_shippingaddress.errors.full_messages).to include('Phone number is invalid')
       end
 
       it '電話番号が半角数値のみしか保存できない' do
         @order_shippingaddress.phone_number = '１２３４５６７８９０'
         @order_shippingaddress.valid?
-        expect(@order_shippingaddress.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_shippingaddress.errors.full_messages).to include('Phone number is invalid')
       end
 
       it 'トークンが空だと保存できない' do
@@ -95,8 +95,6 @@ RSpec.describe OrderShippingaddress, type: :model do
         @order_shippingaddress.valid?
         expect(@order_shippingaddress.errors.full_messages).to include("Token can't be blank")
       end
-    end  
+    end
   end
-
-
 end
