@@ -1,7 +1,7 @@
 class OrderShippingaddress
   include ActiveModel::Model
   # ordersテーブルとshipping_addressesテーブルに保存したいカラム名
-  attr_accessor :user_id, :item_id, :postcode, :prefecture_id, :city, :block, :building, :phone_number
+  attr_accessor :user_id, :item_id, :postcode, :prefecture_id, :city, :block, :building, :phone_number, :token
 
   with_options presence: true do
     # orderモデルのバリデーション
@@ -13,6 +13,8 @@ class OrderShippingaddress
     validates :city
     validates :block
     validates :phone_number, format: { with: /\A[0-9]{10,11}\z/, message: 'is invalid', allow_blank: true }
+    # トークンのバリデーション
+    validates :token
   end
 
   def save
