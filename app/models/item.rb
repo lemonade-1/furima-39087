@@ -7,10 +7,9 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :shipping_date
 
-  # アソシエーション（Userモデル）
+  # アソシエーション
   belongs_to :user
-
-  # アソシエーション（Active Storage）
+  has_one :order
   has_one_attached :image
 
   # 空の投稿を保存できないようにする
